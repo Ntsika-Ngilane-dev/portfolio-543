@@ -1,6 +1,10 @@
 /* ============================================================
    TOKENS
    ============================================================ */
+/*
+  Root-level color variables, font stacks, and theme tokens.
+  These values are reused throughout the stylesheet for visual consistency.
+*/
 :root {
   --ink: #14171F;
   --ink-soft: #2B2F3A;
@@ -73,6 +77,10 @@ a { color: inherit; }
 /* ============================================================
    NAVBAR
    ============================================================ */
+/*
+  Sticky top navigation bar that applies the brand styling and
+  horizontal section links used for page navigation.
+*/
 .navbar {
   background: rgba(20, 23, 31, 0.92);
   backdrop-filter: blur(8px);
@@ -117,6 +125,10 @@ a { color: inherit; }
 /* ============================================================
    HERO
    ============================================================ */
+/*
+  Full-screen hero section with a dramatic background image,
+  overlay tint, and centered headline content.
+*/
 .hero {
   position: relative;
   min-height: 92vh;
@@ -185,6 +197,10 @@ a { color: inherit; }
 /* ============================================================
    ABOUT
    ============================================================ */
+/*
+  About section styles for the profile card, contact list,
+  technology badges, and biography text.
+*/
 .about-section { padding: 5.5rem 0; }
 .about-card {
   background: var(--card);
@@ -241,6 +257,10 @@ a { color: inherit; }
 /* ============================================================
    PROJECTS
    ============================================================ */
+/*
+  Featured project cards with hover elevation, responsive layout,
+  and buttons linking to live demos.
+*/
 .projects-section { padding: 5.5rem 0; }
 .project-card {
   background: var(--card);
@@ -303,6 +323,10 @@ a { color: inherit; }
 /* ============================================================
    CONTACT
    ============================================================ */
+/*
+  Contact area for social links and the email submission form.
+  Includes card styling for the form and custom focus states.
+*/
 .contact-section { padding: 5.5rem 0 6rem; }
 .contact-invite {
   color: var(--muted);
@@ -364,6 +388,11 @@ a { color: inherit; }
 /* ============================================================
    AI CHAT ASSISTANT
    ============================================================ */
+/*
+  Floating assistant widget anchored to the bottom right.
+  This section styles the toggle button, chat card, messages,
+  quick replies, and form layout.
+*/
 .assistant-widget {
   position: fixed;
   right: 1.25rem;
@@ -472,6 +501,9 @@ a { color: inherit; }
 /* ============================================================
    FOOTER
    ============================================================ */
+/*
+  Simple site footer with a dark background and small print text.
+*/
 .site-footer {
   background: var(--ink);
   color: #C9CAD1;
@@ -485,6 +517,10 @@ a { color: inherit; }
 /* ============================================================
    RESPONSIVE TWEAKS
    ============================================================ */
+/*
+  Responsive adjustments for smaller viewports to ensure layout
+  and spacing remain comfortable on mobile devices.
+*/
 @media (max-width: 767px) {
   .nav-links { gap: 1rem; }
   .about-left { border-right: none; border-bottom: 1px solid var(--line); }
@@ -498,6 +534,10 @@ a { color: inherit; }
 /* ============================================================
    BONUS: PRINT-READY RÉSUMÉ VIEW
    ============================================================ */
+/*
+  Print stylesheet hides non-essential page chrome and adapts the
+  content for a clean resume-style paper output.
+*/
 @media print {
   .skip-link, .navbar, .hero-overlay, .projects-section,
   .contact-section, .site-footer { display: none !important; }

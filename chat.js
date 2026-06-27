@@ -1,3 +1,5 @@
+// Profile data used by the floating assistant.
+// Keeping these details centralized makes it easy to update the assistant's responses later.
 const profile = {
   name: 'Ntsika Ngilane',
   preferredName: 'Calvin',
@@ -21,6 +23,7 @@ const profile = {
   bio: 'I’m Ntsika Ngilane, though most people know me as Calvin. I’m a founder and software, AI, and web developer focused on building practical digital products that solve real problems.'
 };
 
+// DOM references for the chat widget's interactive elements.
 const assistantBody = document.getElementById('assistant-body');
 const chatMessages = document.getElementById('chat-messages');
 const chatForm = document.getElementById('chat-form');
@@ -29,8 +32,14 @@ const assistantToggle = document.getElementById('assistant-toggle');
 const assistantCard = document.getElementById('assistant-card');
 const assistantClose = document.getElementById('assistant-close');
 
+// Whether the chat panel is currently expanded.
 let opened = false;
 
+/**
+ * Append a new chat message to the chat history.
+ * @param {string} text - The message text.
+ * @param {'user'|'bot'} sender - Who sent the message.
+ */
 function addMessage(text, sender = 'bot') {
   const message = document.createElement('div');
   message.className = `message ${sender}`;
@@ -39,10 +48,18 @@ function addMessage(text, sender = 'bot') {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+/**
+ * Escape a string for use in a regular expression.
+ * This helper is included for future pattern matching use cases.
+ */
 function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return value.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&');
 }
 
+/**
+ * Generate a response from the assistant based on the user input.
+ * This function uses simple keyword matching to keep the logic straightforward.
+ */
 function getReply(input) {
   const text = input.toLowerCase().trim();
 
@@ -79,6 +96,10 @@ function getReply(input) {
   return `I can share details about Calvin’s background, projects, technical skills, and how to contact him. Try asking about his projects, tech stack, or WhatsApp.`;
 }
 
+/**
+ * Handle submission of the chat form.
+ * Prevents the default HTML form submission and injects messages into the chat.
+ */
 function handleSubmit(event) {
   event.preventDefault();
   const message = chatInput.value.trim();
@@ -89,6 +110,7 @@ function handleSubmit(event) {
 
   const reply = getReply(message);
 
+  // Automatically open WhatsApp when the user asks about contact or messaging.
   if (/(whatsapp|message|contact|reach|call)/i.test(message)) {
     window.open(profile.whatsapp, '_blank', 'noopener,noreferrer');
   }
@@ -96,8 +118,12 @@ function handleSubmit(event) {
   setTimeout(() => addMessage(reply, 'bot'), 250);
 }
 
+// Connect chat form submission to the handler.
 chatForm.addEventListener('submit', handleSubmit);
 
+/**
+ * Toggle the chat widget between hidden and visible states.
+ */
 function toggleChat() {
   opened = !opened;
   assistantCard.style.display = opened ? 'block' : 'none';
@@ -107,6 +133,7 @@ function toggleChat() {
 assistantToggle.addEventListener('click', toggleChat);
 assistantClose.addEventListener('click', toggleChat);
 
+// Populate the input with a quick reply when a preset button is clicked.
 document.querySelectorAll('.quick-reply').forEach((button) => {
   button.addEventListener('click', () => {
     const message = button.getAttribute('data-message');
@@ -115,4 +142,5 @@ document.querySelectorAll('.quick-reply').forEach((button) => {
   });
 });
 
+// Start with the chat widget hidden by default.
 assistantCard.style.display = 'none';
